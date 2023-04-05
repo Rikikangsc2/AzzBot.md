@@ -1,35 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Website Monitor</title>
+	<title>Monitoring Website</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<h1>Website Monitor</h1>
-	<p>Website URL: https://azzbot.ikyystore3.repl.co/</p>
-	
+	<h1>Monitoring Website</h1>
 	<div id="result"></div>
-
-	<script>
-		function ping() {
-			var xhr = new XMLHttpRequest();
-			var url = "https://azzbot.ikyystore3.repl.co/";
-			var startTime, endTime;
-			var diff;
-
-			startTime = (new Date()).getTime();
-			xhr.open("GET", url, true);
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState === 4) {
-					endTime = (new Date()).getTime();
-					diff = endTime - startTime;
-					document.getElementById("result").innerHTML = "Ping: " + diff + " ms";
-				}
-			};
-			xhr.send();
-		}
-
-		// set interval to run every 5 minutes
-		setInterval(ping, 5 * 60 * 1000);
+	<script type="text/javascript">
+		$(document).ready(function() {
+			setInterval(function() {
+				$.ajax({
+					url: 'https://azzbot.ikyystore3.repl.co/',
+					type: 'POST',
+					dataType: 'html',
+					success: function(response) {
+						$("#result").html(response);
+					}
+				});
+			}, 300000);
+		});
 	</script>
 </body>
-</html> 
+</html>
