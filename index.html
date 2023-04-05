@@ -1,22 +1,35 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <h1>Website Monitoring</h1>
-    <div id="results"></div>
-  </body>
-  <script>
-    function ping() {
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://azzbot.ikyystore3.repl.co/ping", true);
-      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-          document.getElementById("results").innerHTML += xhr.responseText;
-        }
-      }
-      xhr.send();
-    }
-    setInterval(function() {
-      ping();
-    }, 300000);
-  </script>
+<head>
+	<title>Website Monitor</title>
+</head>
+<body>
+	<h1>Website Monitor</h1>
+	<p>Website URL: https://azzbot.ikyystore3.repl.co/</p>
+	
+	<div id="result"></div>
+
+	<script>
+		function ping() {
+			var xhr = new XMLHttpRequest();
+			var url = "https://azzbot.ikyystore3.repl.co/";
+			var startTime, endTime;
+			var diff;
+
+			startTime = (new Date()).getTime();
+			xhr.open("GET", url, true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					endTime = (new Date()).getTime();
+					diff = endTime - startTime;
+					document.getElementById("result").innerHTML = "Ping: " + diff + " ms";
+				}
+			};
+			xhr.send();
+		}
+
+		// set interval to run every 5 minutes
+		setInterval(ping, 5 * 60 * 1000);
+	</script>
+</body>
 </html>
