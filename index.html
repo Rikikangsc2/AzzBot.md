@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Monitoring Nonstop</title>
+  </head>
+  <body>
+    <h1>Web Monitoring</h1>
+    <div id="result"></div>
+    <script>
+      var url = "https://azzbot.ikyystore3.repl.co/";
+      var timeout = 30000; // 30 detik
+      var interval = 180000; // 3 menit
+      var resultElem = document.getElementById("result");
+      var checking = true;
+      
+      function updateResult(status) {
+        var result = "<p>" + new Date().toLocaleString() + " : " + status + "</p>";
+        resultElem.innerHTML = result + resultElem.innerHTML;
+      }
+      
+      function checkUrl() {
+        if (!checking) {
+          return;
+        }
+        updateResult("Mengecek...");
+        fetch(url, {mode: "no-cors"})
+          .then(response => {
+            if (!response.ok) {
+              updateResult("Gagal");
+            } else {
+              updateResult("Sukses");
+            }
+          })
+          .catch(error => {
+            updateResult("Gagal");
+          })
+          .finally(() => {
+            setTimeout(checkUrl, timeout);
+          });
+      }
+      
+      setTimeout(() => {
+        checking = false;
+      }, interval);
+      
+      checkUrl();
+    </script>
+  </body>
+</html>
