@@ -1,31 +1,35 @@
- untuk menjalankan perintah
 
+
+<!-- HTML -->
 <html>
-  <head>
-    <title>Terminal Bash</title>
-    <style type="text/css">
-      body {
-        font-family: monospace;
-        background-color: #000;
-        color: #0f0;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <?php
-        $command = $_POST['command'];
-        if ($command) {
-          echo '<pre>';
-          system($command);
-          echo '</pre>';
-        }
-      ?>
-    </div>
-    <form action="" method="post">
-      <input type="text" name="command" placeholder="Masukkan Perintah" autofocus>
-      <input type="submit" value="Jalankan">
-    </form>
-  </body>
+<head>
+    <title>Bash Command Support</title>
+</head>
+<body>
+    <h1>Bash Command Support</h1>
+    <p>This page supports bash commands.</p>
+</body>
 </html>
+
+<!-- CSS -->
+body {
+    font-family: sans-serif;
+    background-color: #fafafa;
+    color: #444;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+<!-- PHP -->
+<?php
+    // This script will execute a bash command
+    $command = escapeshellcmd('ls -la');
+    $output = shell_exec($command);
+    echo $output;
+?>
 
