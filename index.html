@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Web monitoring</title>
-  <style>
-    /* Add styles for the form and the output section here */
-  </style>
+	<title>Website Monitor</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		function monitorWebsite() {
+			var url = "https://azzbot.ikyystore3.repl.co/";
+			$.ajax({
+				url: url,
+				success: function() {
+					$("#result").append("<p>" + url + " is UP at " + new Date().toLocaleTimeString() + "</p>");
+				},
+				error: function() {
+					$("#result").append("<p>" + url + " is DOWN at " + new Date().toLocaleTimeString() + "</p>");
+				}
+			});
+		}
+		$(document).ready(function() {
+			var interval = setInterval(monitorWebsite, 10000); // 10 seconds interval
+			setTimeout(function() {
+				clearInterval(interval);
+				$("#result").append("<p>Monitoring stopped at " + new Date().toLocaleTimeString() + "</p>");
+			}, 180000); // 3 minutes
+		});
+	</script>
 </head>
 <body>
-  <form>
-    <input type="text" id="url" placeholder="Enter URL to monitor">
-    <button type="submit" onclick="monitor()">Monitor</button>
-  </form>
-  <div id="output">Results will be displayed here</div>
-  <script src="monitor.js"></script>
+	<h1>Website Monitor</h1>
+	<div id="result"></div>
 </body>
 </html>
