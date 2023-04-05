@@ -1,58 +1,17 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Terminal Bash</title>
-	<style type="text/css">
-		body {
-			background-color: #000;
-			color: #fff;
-			font-family: monospace;
-			font-size: 14px;
-			margin: 0;
-			padding: 0;
-		}
-
-		#terminal {
-			background-color: #000;
-			border: 1px solid #ccc;
-			height: 400px;
-			margin: 0 auto;
-			overflow: auto;
-			padding: 10px;
-			width: 600px;
-		}
-
-		#command {
-			background-color: #000;
-			border: 1px solid #ccc;
-			color: #fff;
-			font-family: monospace;
-			font-size: 14px;
-			margin: 0 auto;
-			padding: 10px;
-			width: 600px;
-		}
-	</style>
+  <title>Web monitoring</title>
+  <style>
+    /* Add styles for the form and the output section here */
+  </style>
 </head>
 <body>
-	<div id="terminal">
-		<p>$ Welcome to Terminal Bash</p>
-	</div>
-	<form id="command" onsubmit="return runCommand(this);">
-		<input type="text" name="command" />
-		<input type="submit" value="Run" />
-	</form>
-	<script type="text/javascript">
-		function runCommand(form) {
-			var command = form.command.value;
-			var terminal = document.getElementById('terminal');
-			terminal.innerHTML += '<p>$ ' + command + '</p>';
-			form.command.value = '';
-			return false;
-		}
-	</script>
+  <form>
+    <input type="text" id="url" placeholder="Enter URL to monitor">
+    <button type="submit" onclick="monitor()">Monitor</button>
+  </form>
+  <div id="output">Results will be displayed here</div>
+  <script src="monitor.js"></script>
 </body>
 </html>
-
