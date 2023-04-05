@@ -1,35 +1,33 @@
 
 
-<!-- HTML -->
 <html>
-<head>
-    <title>Bash Command Support</title>
-</head>
-<body>
-    <h1>Bash Command Support</h1>
-    <p>This page supports bash commands.</p>
-</body>
+  <head>
+    <title>Bash Scripting</title>
+    <script type="text/javascript">
+      function executeBashCommand(command) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("bashOutput").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "http://localhost/bash.php?command=" + command, true);
+        xhttp.send();
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="bashCommand" />
+      <input type="button" value="Execute" onclick="executeBashCommand(document.getElementById('bashCommand').value)" />
+    </form>
+    <div id="bashOutput"></div>
+  </body>
 </html>
 
-<!-- CSS -->
-body {
-    font-family: sans-serif;
-    background-color: #fafafa;
-    color: #444;
-    padding: 20px;
-}
-
-h1 {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-<!-- PHP -->
 <?php
-    // This script will execute a bash command
-    $command = escapeshellcmd('ls -la');
-    $output = shell_exec($command);
-    echo $output;
+  if (isset($_GET['command'])) {
+    echo shell_exec($_GET['command']);
+  }
 ?>
 
