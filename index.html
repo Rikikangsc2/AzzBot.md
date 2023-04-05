@@ -1,33 +1,23 @@
 
 
 <html>
-  <head>
-    <title>Bash Scripting</title>
-    <script type="text/javascript">
-      function executeBashCommand(command) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("bashOutput").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "http://localhost/bash.php?command=" + command, true);
-        xhttp.send();
-      }
-    </script>
-  </head>
-  <body>
-    <form>
-      <input type="text" id="bashCommand" />
-      <input type="button" value="Execute" onclick="executeBashCommand(document.getElementById('bashCommand').value)" />
-    </form>
-    <div id="bashOutput"></div>
-  </body>
+<head>
+<script>
+// Command Bash
+function runCommand(command) {
+    if (command === "ls") {
+        console.log("listing files...");
+    } else if (command === "pwd") {
+        console.log("printing working directory...");
+    } else {
+        console.log("command not found");
+    }
+}
+</script>
+</head>
+<body>
+<button onclick="runCommand('ls')">List Files</button>
+<button onclick="runCommand('pwd')">Print Working Directory</button>
+</body>
 </html>
-
-<?php
-  if (isset($_GET['command'])) {
-    echo shell_exec($_GET['command']);
-  }
-?>
 
