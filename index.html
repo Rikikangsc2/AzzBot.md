@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Web Monitoring Nonstop</title>
-  </head>
-  <body>
-    <h1>Web Monitoring</h1>
-    <div id="result"></div>
-    <script>
-      var url = "https://azzbot.ikyystore3.repl.co/";
-      var timeout = 30000; // 30 detik
-      var interval = 180000; // 3 menit
-      var resultElem = document.getElementById("result");
-      var checking = true;
-      
-      function updateResult(status) {
-        var result = "<p>" + new Date().toLocaleString() + " : " + status + "</p>";
-        resultElem.innerHTML = result + resultElem.innerHTML;
-      }
-      
-      function checkUrl() {
-        if (!checking) {
-          return;
+
+<head>
+  <meta charset="UTF-8">
+  <title>Web Monitoring</title>
+</head>
+
+<body>
+  <div id="logs" style="height: 500px; overflow-y: scroll;"></div>
+
+  <script>
+    function getLogs() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://azzbot.ikyystore3.repl.co/", true);
+      xhr.timeout = 30000; // timeout monitoring setiap 30 detik
+
+      xhr.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+          var logsArr = JSON.parse(this.responseText);
+
+          var logsDiv = document.getElementById("logs");
+          for (var i = 0; i < logsArr.length; i++) {
+            var logDiv = document.createElement("div");
+            logDiv.innerText = logsArr[i];
+            logsDiv.appendChild(logDiv);
+          }
+
+          // Hanya menampilkan 30 log terbaru
+          if (logsDiv.childNodes.length > 30) {
+            logsDiv.removeChild(logsDiv.childNodes[0]);
+          }
         }
-        updateResult("Mengecek...");
-        fetch(url, {mode: "no-cors"})
-          .then(response => {
-            if (!response.ok) {
-              updateResult("Gagal");
-            } else {
-              updateResult("Sukses");
-            }
-          })
-          .catch(error => {
-            updateResult("Gagal");
-          })
-          .finally(() => {
-            setTimeout(checkUrl, timeout);
-          });
-      }
-      
-      setTimeout(() => {
-        checking = false;
-      }, interval);
-      
-      checkUrl();
-    </script>
-  </body>
+      };
+
+      xhr.send();
+
+      // Loop selama 5 menit
+      setTimeout(getLogs, 300000);
+    }
+
+    getLogs(); // Panggil fungsi getLogs() saat halaman dimuat
+  </script>
+</body>
+
 </html>
