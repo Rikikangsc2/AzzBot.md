@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Contoh Kode</title>
-	<style>
-		/* Stylesheet */
-	</style>
-</head>
-<body>
-	<h1>Contoh Kode</h1>
-	<p>RAM Storage:</p>
-	<div id="ram-storage"></div>
-	<p>Logs:</p>
-	<div id="logs"></div>
-	<script>
-		// JavaScript
-		// Menerima informasi dari kode lain
-		window.addEventListener("message", function(event) {
-			if (event.data.type === "ram-storage") {
-				document.getElementById("ram-storage").innerHTML = event.data.value;
-			} else if (event.data.type === "logs") {
-				document.getElementById("logs").innerHTML = event.data.value;
-			}
-		});
-	</script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Contoh Kode HTML, CSS, dan JS dengan Teks dan Tombol Menu</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="menu">
+      <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+      <ul class="menu-list">
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Tentang</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <h1>Contoh Kode HTML, CSS, dan JS</h1>
+      <p>Ini adalah contoh kode HTML, CSS, dan JS dengan isi teks yang diberikan dan tombol menu. Silakan klik tombol menu di atas untuk melihat daftar menu.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce feugiat dolor in sapien elementum faucibus. Pellentesque ut tortor vitae est vehicula laoreet. Vivamus tincidunt orci vel tellus iaculis, vel eleifend ex efficitur. Vestibulum at nisi blandit, euismod quam sit amet, vehicula nulla. Sed sit amet vestibulum sapien. Sed nec sodales augue. Donec tristique justo nec mi ultricies, eu bibendum augue finibus. Curabitur pretium ullamcorper mi, at malesuada sapien vestibulum in.</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
