@@ -1,58 +1,58 @@
-/* Set background color */
+/* CSS for Azzbot Fitur Bot */
+
 body {
-  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  background-color: #1c1c1c;
+  color: #fff;
 }
 
-/* Style header */
 h1 {
-  color: #333;
+  font-size: 36px;
   text-align: center;
   margin-top: 50px;
-  font-size: 36px;
+  animation: neon 1s ease-in-out infinite alternate;
 }
 
-/* Style paragraphs */
-p {
-  color: #555;
-  font-size: 18px;
+p, ul {
+  font-size: 20px;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
-/* Style list */
 ul {
-  list-style-type: none;
-  margin-left: 0;
-  padding-left: 0;
+  margin-left: 40px;
 }
 
-/* Style list items */
 li {
   margin-bottom: 10px;
-  font-size: 16px;
 }
 
-/* Style code snippets */
 code {
-  background-color: #f2f2f2;
-  padding: 2px 4px;
-  font-size: 14px;
-  color: #555;
-  border-radius: 3px;
+  font-size: 18px;
+  font-family: Consolas, monospace;
+  background-color: #333;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-/* Style links */
-a {
-  color: #007bff;
-  text-decoration: none;
+/* Neon animation */
+@keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00e6e6, 0 0 70px #00e6e6, 0 0 80px #00e6e6, 0 0 100px #00e6e6;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00e6e6, 0 0 35px #00e6e6, 0 0 40px #00e6e6, 0 0 50px #00e6e6;
+  }
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Set width and center content */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+/* Background gradient */
+body:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #00e6e6, #008080);
+  z-index: -1;
 }
