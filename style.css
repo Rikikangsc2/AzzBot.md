@@ -1,274 +1,123 @@
-/* Reset CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Mengatur background page */
+body {
+  background-image: url('https://example.com/background.jpg');
+  background-size: cover;
 }
 
-/* Navbar */
+/* Mengatur style navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
-  z-index: 1;
-}
-
-.navbar-menu {
+  background-color: #333;
+  color: white;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  padding: 0 20px;
+  padding: 10px;
 }
 
+/* Mengatur tampilan menu toggle */
 .navbar-toggle {
-  display: none;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+  padding: 0;
 }
 
 .navbar-toggle-icon {
-  display: block;
-  width: 25px;
+  background-color: white;
   height: 2px;
-  background-color: #333;
-  transition: all .3s ease-in-out;
+  width: 20px;
+  transition: all 0.2s ease-in-out;
 }
 
-.navbar-toggle-icon::before,
-.navbar-toggle-icon::after {
-  content: '';
-  display: block;
-  width: 25px;
-  height: 2px;
-  background-color: #333;
-  position: absolute;
-  left: 0;
-  transition: all .3s ease-in-out;
+/* Mengatur animasi menu toggle */
+.navbar-toggle.active .navbar-toggle-icon:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
 }
 
-.navbar-toggle-icon::before {
-  top: -8px;
+.navbar-toggle.active .navbar-toggle-icon:nth-child(2) {
+  opacity: 0;
 }
 
-.navbar-toggle-icon::after {
-  top: 8px;
+.navbar-toggle.active .navbar-toggle-icon:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
+/* Mengatur style daftar menu */
 .navbar-list {
   display: flex;
-  list-style: none;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50px;
+  right: -100%;
+  background-color: #333;
+  width: 200px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-list.active {
+  right: 0;
 }
 
 .navbar-list li {
-  margin-right: 20px;
-}
-
-.navbar-list li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 18px;
-  transition: all .3s ease-in-out;
-  position: relative;
-}
-
-.navbar-list li a::before {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: #333;
-  transition: all .3s ease-in-out;
-}
-
-.navbar-list li a:hover::before {
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .navbar-toggle {
-    display: block;
-  }
-  
-  .navbar-menu {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-    transition: all .3s ease-in-out;
-  }
-  
-  .navbar-menu.active {
-    height: 200px;
-  }
-  
-  .navbar-list {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  .navbar-list li {
-    margin: 10px 0;
-  }
-  
-  .navbar-list li a::before {
-    display: none;
-  }
-}
-
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 100px auto;
+  padding: 10px;
   text-align: center;
-  transform-style: preserve-3d;
-  animation: rotate 10s ease-in-out infinite;
+  border-bottom: 1px solid white;
 }
 
-.container:hover {
-  animation-play-state: paused;
+.navbar-list li:last-child {
+  border-bottom: none;
+}
+
+.navbar-list a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Mengatur style container utama */
+.container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
 }
 
 .title {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 36px;
+  margin-top: 0;
 }
 
 .subtitle {
   font-size: 24px;
-  font-weight: bold;
-  color: #333;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 18px;
+}
+
+.button {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  font-size: 24px;
+  margin: 20px auto;
+  padding: 10px 20px;
   text-align: center;
-  margin: 20px 0;
-  position: relative;
-  perspective: 1000px; /* Membuat efek 3D saat di-hover */
+  text-decoration: none;
+  width: 200px;
 }
 
-/* Animasi teks meloncat-meloncat */
-.subtitle span {
-  position: relative;
-  display: inline-block;
-  animation-name: jump;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+.link {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
 }
-
-@keyframes jump {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
-
-/* Efek 3D saat di-hover */
-.subtitle:hover {
-  transform-style: preserve-3d;
-}
-
-.subtitle:hover:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: rotateX(90deg);
-  transform-origin: top;
-  transition: transform 0.5s;
-}
-
-.subtitle:hover:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #333;
-  transform: rotateX(90deg);
-  transform-origin: bottom;
-  transition: transform 0.5s;
-}
-
-/* Efek bayangan */
-.subtitle:before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: -1;
-}
-
-/* Gradient latar belakang */
-.subtitle:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, #e0e0e0, #fff);
-  z-index: -2;
-}
-
-/* Shadow text */
-.subtitle span:before,
-.subtitle span:after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  color: #333;
-  opacity: 0.5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.subtitle span:before {
-  top: 1px;
-}
-
-.subtitle span:after {
-  top: -1px;
-}
-
-/* Animasi warna teks */
-.subtitle span:nth-child(1) {
-  color: #f00;
-  animation-delay: 0.1s;
-}
-
-.subtitle span:nth-child(2) {
-  color: #ff0;
-  animation-delay: 0.2s;
-}
-
-.subtitle span:nth-child(3) {
-  color: #0f0;
-  animation-delay: 0.3s;
-}
-
-.subtitle span:nth-child(4) {
-  color: #0ff;
-  animation-delay: 0.4s;
-}
-
-.subtitle span:nth-child(5) {
-  color: #00f;
-  animation-delay: 0.5
-
