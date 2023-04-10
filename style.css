@@ -1,126 +1,100 @@
-/* CSS untuk Navbar */
-.navbar {
-  background-color: #333;
-  position: fixed;
-  width: 100%;
-  z-index: 1;
+/* Background dengan gambar */
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
 }
 
-.navbar-menu {
+/* Gaya Navbar */
+.navbar {
+  background-color: #333;
+  height: 60px;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
   align-items: center;
+  padding: 0 20px;
 }
 
 .navbar-toggle {
-  background-color: #fff;
   border: none;
+  background-color: transparent;
   cursor: pointer;
-  height: 30px;
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
-
-.navbar-toggle:hover {
-  background-color: #ddd;
+  font-size: 24px;
+  color: #fff;
 }
 
 .navbar-toggle-icon {
-  height: 3px;
+  display: inline-block;
   width: 20px;
+  height: 3px;
   background-color: #fff;
-  position: relative;
-  transition: all 0.2s ease-in-out;
-}
-
-.navbar-toggle-icon:before,
-.navbar-toggle-icon:after {
-  content: "";
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  position: absolute;
-  transition: all 0.2s ease-in-out;
-}
-
-.navbar-toggle-icon:before {
-  transform: translateY(-7px);
-}
-
-.navbar-toggle-icon:after {
-  transform: translateY(7px);
+  border-radius: 3px;
 }
 
 .navbar-list {
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
 }
 
 .navbar-list li {
-  margin: 0 10px;
+  margin-right: 20px;
 }
 
 .navbar-list li a {
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .navbar-list li a:hover {
-  color: #ddd;
+  color: #f00;
 }
 
-
-/* CSS untuk kontainer */
+/* Gaya Container */
 .container {
-  margin-top: 80px;
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
-  background-color: #f2f2f2;
-  padding: 50px;
-  border-radius: 10px;
+  padding: 50px 20px;
 }
 
 .title {
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: #333;
 }
 
 .subtitle {
   font-size: 24px;
   margin-bottom: 20px;
+  color: #333;
 }
 
 .description {
   font-size: 18px;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #666;
 }
 
 .button {
   display: inline-block;
-  background-color: #333;
-  color: #fff;
   padding: 10px 20px;
-  border-radius: 5px;
+  background-color: #f00;
+  color: #fff;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .button:hover {
-  background-color: #fff;
-  color: #333;
+  background-color: #333;
 }
 
 .link {
   font-size: 14px;
-  color: #999;
-  margin-top: 20px;
+  margin-top: 50px;
+  color: #666;
 }
