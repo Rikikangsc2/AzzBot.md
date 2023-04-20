@@ -1,100 +1,157 @@
-/* Background dengan gambar */
+/* membuat background pada halaman */
 body {
-  background-image: url('background.jpg');
-  background-size: cover;
+  background-color: #363636;
 }
 
-/* Gaya Navbar */
+/* membuat style pada navbar */
 .navbar {
-  background-color: #333;
+  background-color: #222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  z-index: 999;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
 }
 
 .navbar-toggle {
-  border: none;
   background-color: transparent;
-  cursor: pointer;
-  font-size: 24px;
+  border: none;
   color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
 .navbar-toggle-icon {
   display: inline-block;
-  width: 20px;
-  height: 3px;
+  width: 30px;
+  height: 5px;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.navbar-toggle-icon::before,
+.navbar-toggle-icon::after {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 5px;
+  background-color: #fff;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+}
+
+.navbar-toggle-icon::before {
+  transform: translateY(-10px);
+}
+
+.navbar-toggle-icon::after {
+  transform: translateY(10px);
 }
 
 .navbar-list {
-  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
 }
 
 .navbar-list li {
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .navbar-list li a {
   color: #fff;
   text-decoration: none;
-  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 .navbar-list li a:hover {
-  color: #f00;
+  color: #f1c40f;
 }
 
-/* Gaya Container */
+/* membuat style pada container */
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 100px auto;
   text-align: center;
-  padding: 50px 20px;
 }
 
 .title {
+  color: #fff;
   font-size: 48px;
-  font-weight: bold;
   margin-bottom: 20px;
-  color: #333;
 }
 
 .subtitle {
+  color: #fff;
   font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 40px;
 }
 
 .description {
+  color: #fff;
   font-size: 18px;
   line-height: 1.5;
-  margin-bottom: 30px;
-  color: #666;
+  margin-bottom: 40px;
 }
 
 .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #f00;
-  color: #fff;
+  background-color: #f1c40f;
+  color: #363636;
+  font-size: 18px;
+  font-weight: bold;
   text-decoration: none;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .button:hover {
-  background-color: #333;
+  background-color: #e67e22;
 }
 
 .link {
+  color: #fff;
   font-size: 14px;
-  margin-top: 50px;
-  color: #666;
+  margin-top: 20px;
+}
+
+/* membuat style ketika tombol navbar di klik */
+.navbar-list.active {
+  display: block;
+}
+
+.navbar-list {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar-list li {
+  margin: 10px 0;
+}
+
+.navbar-list li a {
+  font-size: 24px;
 }
