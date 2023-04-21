@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Contoh Input dan Redirect</title>
-  <style>
-    /* CSS untuk tampilan input */
-    input[type="text"] {
-      padding: 10px;
-      font-size: 16px;
-    }
+  <head>
+    <title>Contoh Input Form</title>
+    <style>
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 10px;
+      }
+      input[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form onsubmit="handleSubmit(event)">
+      <label for="search">Search:</label>
+      <input type="text" id="search" name="search">
+      <input type="submit" value="Submit">
+    </form>
 
-    /* CSS untuk tombol submit */
-    input[type="submit"] {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <h1>Contoh Input dan Redirect</h1>
-  <form id="searchForm">
-    <label for="queryInput">Masukkan query:</label>
-    <input type="text" id="queryInput" name="queryInput">
-    <input type="submit" value="Submit">
-  </form>
+    <script>
+      const searchInput = document.getElementById("search");
+      searchInput.value = "riki";
 
-  <script>
-    // JavaScript untuk mengatur submit form
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Menghentikan submit form
-
-      // Mendapatkan nilai input teks
-      var query = document.getElementById('queryInput').value;
-
-      // Menambahkan teks "riki" ke dalam input
-      document.getElementById('queryInput').value = 'riki ' + query;
-
-      // Mengarahkan pengguna ke link yang ditentukan
-      window.location.href = `https://you.com/search?q=${query}&fromSearchBar=true&tbm=youchat`;
-    });
-  </script>
-</body>
+      function handleSubmit(event) {
+        event.preventDefault();
+        const query = searchInput.value;
+        window.location.href = `https://you.com/search?q=${query}&fromSearchBar=true&tbm=youchat`;
+      }
+    </script>
+  </body>
 </html>
