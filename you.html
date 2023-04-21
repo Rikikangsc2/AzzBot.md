@@ -1,49 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Contoh Input Form</title>
+<head>
+    <title>Pencarian Keren</title>
     <style>
-      input[type="text"] {
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
-        margin-bottom: 10px;
-      }
-      input[type="submit"] {
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-      }
+        /* CSS untuk tampilan keren */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .search-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .search-container h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .search-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
-  </head>
-  <body>
-    <form onsubmit="handleSubmit(event)">
-      <label for="search">Search:</label>
-      <input type="text" id="search" name="search">
-      <input type="submit" value="Submit">
-    </form>
+</head>
+<body>
+    <div class="search-container">
+        <h1>Pencarian Chatbot youcom</h1>
+        <form class="search-form" onsubmit="return search()">
+            <input type="text" id="query" class="search-input" placeholder="Masukkan kata kunci" required>
+            <button type="submit" class="search-button">Cari</button>
+        </form>
+    </div>
 
     <script>
-      const searchInput = document.getElementById("search");
-      searchInput.value = "riki";
-      searchInput.addEventListener("input", handleInput);
+        function search() {
+            // Mendapatkan nilai input dari pengguna
+            var query = document.getElementById('query').value;
 
-      function handleInput(event) {
-        if (searchInput.value !== "riki") {
-          searchInput.value = "riki";
+            // Membangun URL dengan query yang dimasukkan
+            var url = `https://you.com/search?q=${query}&fromSearchBar=true&tbm=youchat`;
+
+            // Mengarahkan ke URL yang dibangun
+            window.location.href = url;
+
+            // Mengembalikan false untuk mencegah form submit
+            return false;
         }
-      }
-
-      function handleSubmit(event) {
-        event.preventDefault();
-        const query = searchInput.value;
-        window.location.href = `https://you.com/search?q=${query}&fromSearchBar=true&tbm=youchat`;
-      }
     </script>
-  </body>
+</body>
 </html>
