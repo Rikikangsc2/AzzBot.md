@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contoh Input dan Redirect</title>
+  <style>
+    /* CSS untuk tampilan input */
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    /* CSS untuk tombol submit */
+    input[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Contoh Input dan Redirect</h1>
+  <form id="searchForm">
+    <label for="queryInput">Masukkan query:</label>
+    <input type="text" id="queryInput" name="queryInput">
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    // JavaScript untuk mengatur submit form
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Menghentikan submit form
+
+      // Mendapatkan nilai input teks
+      var query = document.getElementById('queryInput').value;
+
+      // Menambahkan teks "riki" ke dalam input
+      document.getElementById('queryInput').value = 'riki ' + query;
+
+      // Mengarahkan pengguna ke link yang ditentukan
+      window.location.href = `https://you.com/search?q=${query}&fromSearchBar=true&tbm=youchat`;
+    });
+  </script>
+</body>
+</html>
