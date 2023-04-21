@@ -30,7 +30,14 @@
 
     <script>
       const searchInput = document.getElementById("search");
-      searchInput.value = "klik untuk memasukan teks";
+      searchInput.value = "riki";
+      searchInput.addEventListener("input", handleInput);
+
+      function handleInput(event) {
+        if (searchInput.value !== "riki") {
+          searchInput.value = "riki";
+        }
+      }
 
       function handleSubmit(event) {
         event.preventDefault();
