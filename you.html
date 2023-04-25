@@ -1,111 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mesin Pencari You</title>
-  <style>
-    /* CSS untuk tampilan mesin pencari */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-    
-    .search-container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-    
-    .search-container input[type=text] {
-      padding: 10px;
-      width: 75%;
-      border: none;
-      border-radius: 5px 0 0 5px;
-      float: left;
-      font-size: 16px;
-    }
-    
-    .search-container button {
-      float: left;
-      width: 25%;
-      padding: 10px;
-      background: #d9d9d9;
-      color: #555;
-      font-size: 16px;
-      border: none;
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-    }
-    
-    .search-container button:hover {
-      background: #ccc;
-    }
-    
-    .search-results {
-      margin-top: 20px;
-    }
-    
-    .search-results h3 {
-      font-size: 18px;
-    }
-    
-    .search-results a {
-      color: #1a0dab;
-    }
-  </style>
-</head>
-<body>
-  <!-- HTML untuk form pencarian -->
-  <div class="search-container">
-    <form onsubmit="search(event)">
-      <input type="text" placeholder="Cari di You..." name="query" required>
-      <button type="submit">Cari</button>
-    </form>
-  </div>
-  
-  <!-- HTML untuk hasil pencarian -->
-  <div class="search-results" id="searchResults">
-  </div>
-  
-  <!-- JavaScript untuk memproses form pencarian -->
-  <script>
-    function search(event) {
-      event.preventDefault();
-      const query = document.querySelector('input[name="query"]').value;
-      const searchResults = document.getElementById("searchResults");
-      searchResults.innerHTML = "<p>Mencari...</p>";
-      
-      fetch(`https://you.com/search?q=${query}&fromSearchBar=true&tbm=youchat&cfr=chat`)
-        .then(response => response.text())
-        .then(html => {
-          searchResults.innerHTML = "";
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, "text/html");
-          const results = doc.querySelectorAll(".search-result");
-          
-          if (results.length === 0) {
-            searchResults.innerHTML = "<p>Tidak ada hasil untuk pencarian ini.</p>";
-          } else {
-            results.forEach(result => {
-              const title = result.querySelector(".title").textContent;
-              const url = result.querySelector(".url").textContent;
-              
-              const resultHTML = `
-                <div class="result-item">
-                  <h3><a href="${url}">${title}</a></h3>
-                  <p>${url}</p>
-                </div>
-              `;
-              
-              searchResults.insertAdjacentHTML("beforeend", resultHTML);
-            });
+  <head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <style>
+      /* styling for the game board */
+      #board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+      }
+      #board button {
+        font-size: 24px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <div id="board"></div>
+    <script>
+      // JavaScript code for the game
+      const board = document.getElementById('board');
+      let currentPlayer = 'X';
+      let gameOver = false;
+
+      // create the game board
+      for (let i = 0; i < 9; i++) {
+        const button = document.createElement('button');
+        button.setAttribute('data-index', i);
+        button.addEventListener('click', () => {
+          if (!gameOver && button.textContent === '') {
+            button.textContent = currentPlayer;
+            checkForWinner();
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
           }
-        })
-        .catch(error => {
-          searchResults.innerHTML = "<p>Terjadi kesalahan. Silakan coba lagi nanti.</p>";
         });
-    }
-  </script>
-</body>
+        board.appendChild(button);
+      }
+
+      // check if there is a winner
+      function checkForWinner() {
+        const cells = document.querySelectorAll('#board button');
+        const winningPatterns = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6],
+        ];
+        for (let i = 0; i < winningPatterns.length; i++) {
+          const [a, b, c] = winningPatterns[i];
+          if (cells[a].textContent === currentPlayer && cells[b].textContent === currentPlayer && cells[c].textContent === currentPlayer) {
+            alert(currentPlayer + ' wins!');
+            gameOver = true;
+            break;
+          }
+        }
+      }
+    </script>
+  </body>
 </html>
